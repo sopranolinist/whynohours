@@ -24,14 +24,14 @@ button:disabled {
     background-color: #ff8080;
     font-style: italic;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     padding: 10px;
 }
 
 .warning {
     color: #21c5c5;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 }
 
 .header {
@@ -73,7 +73,8 @@ button:disabled {
 .container__centered>div {
     display: flex;
     flex: 0 100%;
-    padding: 1.0rem;
+    padding: 1.2rem;
+    margin: 1.2rem;
 }
 
 .widget {
@@ -87,7 +88,7 @@ button:disabled {
     margin: 0;
     padding: 1.0rem;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 }
 
 .widget__message--title{
@@ -119,6 +120,7 @@ button:disabled {
     border: none;
     border-bottom: .3rem solid darken(#1caaaa, 10%);
     color: white;
+    font-size: 1.6rem;
     font-weight: 500;
     padding: 1.2rem;
 }
