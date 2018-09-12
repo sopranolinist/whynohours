@@ -4,7 +4,7 @@
 
 import axios from 'axios';
 import moment from 'moment';
-import config from '../../config';
+import config from '../config';
 
 // User Structure
 //  user = {

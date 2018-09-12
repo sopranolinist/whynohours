@@ -4,15 +4,11 @@
 
 import axios from 'axios';
 import moment from 'moment';
-import config from '../../config';
+import config from '../config';
 
 const HARVEST_SERVER_URI = 'https://api.harvestapp.com/v2';
 const CORS_PROXY_URI = 'https://cors-anywhere.herokuapp.com/';
-//const HARVEST_ACCESS_TOKEN = '1693057.pt.O0h_-Hkf00jqrt0jtpLUIpJk8UF8SpXfOvcBu1i62yLahYcLQXMdAdNbPZ1hueEdQjMmEEMnWVMV2-2nt7_9Zw';
-//const HARVEST_ACCOUNT_ID = '978212';
 const HARVEST_USER_AGENT = 'Harvest API Example';
-
-// NEED TO FINISH TIME ENTRIES ACTION AND CREATE TIME ENTRIES REDUCER AND ADD TO CONFIGURE STORE!
 
 export const getTimeEntries = (users, dates, callback) => async (dispatch) => {
     try {

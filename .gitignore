@@ -22,5 +22,4 @@ yarn-error.log*
 
 src-old/
 public/dist/
-config.js
 

@@ -4,9 +4,10 @@
 import axios from 'axios';
 import moment from 'moment';
 import jwt from 'jwt-simple';
-import config from '../../config';
+import config from '../config';
 
 const GC_SCOPE = "https://www.googleapis.com/auth/calendar";
+const GC_AUD = "https://www.googleapis.com/oauth2/v4/token";
 
 function generateToken() {
     const now = moment();
@@ -15,7 +16,7 @@ function generateToken() {
     return jwt.encode({
         iss: config.GC_SERVICE_ACCOUNT_CLIENT_EMAIL,
         scope: GC_SCOPE,
-        aud:"https://www.googleapis.com/oauth2/v4/token",
+        aud: GC_AUD,
         exp: exp,
         iat: iat
     }, 
@@ -28,7 +29,7 @@ export const getCalToken = (callback) => async (dispatch) => {
     const jwtToken = generateToken();
 
     try {
-        const response = await axios.post('https://www.googleapis.com/oauth2/v4/token', { grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer', assertion: jwtToken });
+        const response = await axios.post(GC_AUD, { grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer', assertion: jwtToken });
         const accessToken = response.data.access_token;
         dispatch({
             type: 'GET_CAL_TOKEN',

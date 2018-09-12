@@ -10,7 +10,7 @@ class App extends React.Component {
                 <div className="header">
                     <div className="container">
                         <div className="header__title">{this.props.componentName}</div>
-                        <div className="warning">NOTE: Until the developer is able to switch to Harvest API OAuth2, this app only works in Chrome with a CORS-blocking extension installed</div>
+                        <div className="warning">NOTE: this code currently uses a CORS proxy to access the Harvest API server</div>
                     </div>                   
                 </div> 
                 <UsersList />
