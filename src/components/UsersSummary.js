@@ -16,7 +16,7 @@ class UsersSummary extends React.Component {
                 {
                     this.props.userCount > 0 &&
                     <div className="widget-header">{this.props.userCount} {this.props.userCount > 1 ? 'users have' : 'user has'} not entered any hours on the following date(s):</div>
-                }               
+                }            
             </div>
         );
     }

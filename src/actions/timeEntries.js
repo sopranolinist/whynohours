@@ -7,6 +7,7 @@ import moment from 'moment';
 import config from '../../config';
 
 const HARVEST_SERVER_URI = 'https://api.harvestapp.com/v2';
+const CORS_PROXY_URI = 'https://cors-anywhere.herokuapp.com/';
 //const HARVEST_ACCESS_TOKEN = '1693057.pt.O0h_-Hkf00jqrt0jtpLUIpJk8UF8SpXfOvcBu1i62yLahYcLQXMdAdNbPZ1hueEdQjMmEEMnWVMV2-2nt7_9Zw';
 //const HARVEST_ACCOUNT_ID = '978212';
 const HARVEST_USER_AGENT = 'Harvest API Example';
@@ -18,12 +19,13 @@ export const getTimeEntries = (users, dates, callback) => async (dispatch) => {
         const timeEntries = [];
         for (const user of users) {
             const response = await axios.get(
-                `${HARVEST_SERVER_URI}/time_entries?user_id=${user.id}&from=${dates.startDate.format('YYYY-MM-DD')}&to=${dates.endDate.format('YYYY-MM-DD')}`, 
+                `${CORS_PROXY_URI}${HARVEST_SERVER_URI}/time_entries?user_id=${user.id}&from=${dates.startDate.format('YYYY-MM-DD')}&to=${dates.endDate.format('YYYY-MM-DD')}`, 
                 {
                     headers: {
                         'Authorization': `Bearer ${config.HARVEST_ACCESS_TOKEN}`,
                         'Harvest-Account-ID': `${config.HARVEST_ACCOUNT_ID}`,
-                        'User-Agent': `${HARVEST_USER_AGENT}`
+                        'User-Agent': `${HARVEST_USER_AGENT}`,
+                        'Origin': 'null'
                     }
                 }
             );

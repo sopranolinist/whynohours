@@ -16,6 +16,7 @@ import config from '../../config';
 
 const HARVEST_SERVER_URI = 'https://api.harvestapp.com/v2';
 const HARVEST_USER_AGENT = 'Harvest API Example';
+const CORS_PROXY_URI = 'https://cors-anywhere.herokuapp.com/';
 
 export const determineMissingDates = (users, timeEntries, cal, dates, callback) => (dispatch) => {
     const initialDate = moment(dates.startDate);
@@ -60,7 +61,7 @@ export const getUsers = (callback) => async (dispatch) => {
     try {
         // Get All Users
         const response = await axios.get(
-            `${HARVEST_SERVER_URI}/users`, 
+            `${CORS_PROXY_URI}${HARVEST_SERVER_URI}/users`, 
             {
                 headers: {
                     'Authorization': `Bearer ${config.HARVEST_ACCESS_TOKEN}`,
