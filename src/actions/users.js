@@ -21,11 +21,12 @@ const CORS_PROXY_URI = 'https://cors-anywhere.herokuapp.com/';
 export const determineMissingDates = (users, timeEntries, cal, dates, callback) => (dispatch) => {
     const initialDate = moment(dates.startDate);
     const searchRange = dates.endDate.diff(dates.startDate, 'days');
+    const usersCopy = users.slice(); // so we don't push onto the original users object (which is actually store.users)
     for(var i = 0; i<=searchRange; i++) {
         let searchDateObject = initialDate;
         let searchDate = searchDateObject.format('YYYY-MM-DD');
         if (searchDateObject.format('d') !== '0' && searchDateObject.format('d') !== '6') { // don't care about weekends
-            users.forEach((user) => {
+            usersCopy.forEach((user) => {
                 let entryFound, entryDateFound, eventFound, eventDateFound;
                 // look at timesheet first
                 entryFound = timeEntries.find((entry) => entry.email === user.email);
@@ -51,7 +52,7 @@ export const determineMissingDates = (users, timeEntries, cal, dates, callback) 
     }
     dispatch({
         type: 'DETERMINE_MISSING_DATES',
-        payload: users
+        payload: usersCopy
     });
     callback();
 };

@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import selectUsers from '../selectors/users';
+import { selectUsersWithMissingDates } from '../selectors/users';
 import '../styles/styles.css';
 
 class UsersSummary extends React.Component {
@@ -15,7 +15,7 @@ class UsersSummary extends React.Component {
             <div>
                 {
                     this.props.userCount > 0 &&
-                    <div className="widget-header">{this.props.userCount} {this.props.userCount > 1 ? 'users have' : 'user has'} not entered any hours on the following date(s):</div>
+                    <div className="widget-header">{this.props.userCount} {this.props.userCount > 1 ? 'users have' : 'user has'} no timesheet entries on the following date(s):</div>
                 }            
             </div>
         );
@@ -24,9 +24,9 @@ class UsersSummary extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const selectedUsers = selectUsers(state.users);
+    const selectedUsersWithMissingDates = selectUsersWithMissingDates(state.users);
     return {
-        userCount: selectedUsers.length
+        userCount: selectedUsersWithMissingDates.length
     }
 };
 

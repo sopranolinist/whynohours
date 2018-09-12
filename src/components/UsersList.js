@@ -11,7 +11,7 @@ import { SingleDatePicker } from 'react-dates';
 import moment from 'moment';
 import User from './User';
 import UsersSummary from './UsersSummary';
-import selectUsers from '../selectors/users';
+import { selectUsers } from '../selectors/users';
 import { getUsers, determineMissingDates } from '../actions/users';
 import { getTimeEntries } from '../actions/timeEntries';
 import { getCalEntries, getCalToken } from '../actions/calendar';
@@ -92,7 +92,7 @@ class UsersList extends React.Component { // unconnected component - exported so
                                     No results.
                                 </div>
                             ) : (
-                                this.props.users.map((user) => <User key={user.id} {...user} />)
+                                this.props.users.filter((user) => user.missingDates.length > 0).map((user) => <User key={user.id} {...user} />)
                             )
                         }
                     </div>
