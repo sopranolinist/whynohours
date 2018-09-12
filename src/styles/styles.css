@@ -1,0 +1,124 @@
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background: #333745;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+.is-active {
+    font-weight: bold;
+}
+
+.error {
+    color: white;
+    background-color: #ff8080;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+.warning {
+    color: #21c5c5;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.header {
+    background: #20222b;
+    color: white;
+    margin-bottom: 3.2rem;
+    padding: 1.6rem 0;
+    justify-content: space-between;
+}
+
+.header__title { 
+    font-size: 3.2rem;
+    margin: 0;
+    padding: 0 0 1.2rem 0;
+}
+
+.header__subtitle {
+    color: #a5afd7;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.container {
+    max-width: 60rem;
+    margin: 0 auto; 
+    padding: 0 1.6rem 1.6rem 1.6rem;
+}
+
+.container__centered {
+    max-width: 60rem;
+    margin: 0 auto; 
+    padding: 1.0rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+.container__centered>div {
+    display: flex;
+    flex: 0 100%;
+    padding: 1.0rem;
+}
+
+.widget {
+    background: #464b5e;
+    margin: 0;
+}
+
+.widget__message {
+    border-bottom: 1px solid lighten(#464b5e, 10%);
+    color: #a5afd7;
+    margin: 0;
+    padding: 1.0rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.widget__message--title{
+    color: #21c5c5;
+    margin: 0;
+    padding: 1.2rem;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.widget-header {
+    background: #3c4251;
+    color: #a5afd7;
+    display: flex;
+    font-size: 1.6rem;
+    font-weight: 500;
+    justify-content: space-between;
+    padding: 1.6rem;
+    text-align: justify;
+}
+
+.widget-header__title {
+    margin: 0;
+    font-size: 2.0rem;
+}
+
+.button {
+    background: #1caaaa;
+    border: none;
+    border-bottom: .3rem solid darken(#1caaaa, 10%);
+    color: white;
+    font-weight: 500;
+    padding: 1.2rem;
+}
