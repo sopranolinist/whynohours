@@ -7,7 +7,7 @@ import moment from 'moment';
 import config from '../config';
 
 const HARVEST_SERVER_URI = 'https://api.harvestapp.com/v2';
-const CORS_PROXY_URI = 'https://cors-anywhere.herokuapp.com/';
+const CORS_PROXY_URI = 'https://cors-anywhere-clone.herokuapp.com/';
 const HARVEST_USER_AGENT = 'Harvest API Example';
 
 export const getTimeEntries = (users, dates, callback) => async (dispatch) => {
