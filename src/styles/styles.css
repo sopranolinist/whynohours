@@ -154,7 +154,7 @@ button:disabled {
 }
 
 .button {
-    background: #1caaaa;
+    background: #ff0000;
     border: none;
     border-bottom: .3rem solid #007777;
     color: white;
