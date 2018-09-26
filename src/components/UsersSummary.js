@@ -15,7 +15,7 @@ class UsersSummary extends React.Component {
             <div>
                 {
                     this.props.userCount > 0 &&
-                    <div className="widget-header">{this.props.userCount} {this.props.userCount > 1 ? 'users have' : 'user has'} no timesheet entries on the following date(s):</div>
+                    <div className="widget-header">{this.props.userCount} {this.props.userCount > 1 ? 'users have' : 'user has'} missing timesheet entries (expand to view dates):</div>
                 }            
             </div>
         );

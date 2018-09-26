@@ -61,7 +61,7 @@ class UsersList extends React.Component { // unconnected component - exported so
                 </div>        
                 <Spinner active={this.state.loading} spinner text='Retrieving data from Harvest and Google Calendar...'>
                     <div className="container__centered">
-                            <div className="container__centered-grow"> 
+                            <div className="container__centered--grow"> 
                                 <SingleDatePicker 
                                     date={this.props.searchDates.startDate}
                                     onDateChange={this.onStartDateChange}
@@ -71,8 +71,8 @@ class UsersList extends React.Component { // unconnected component - exported so
                                     isOutsideRange={() => {false}}
                                 />
                             </div>
-                            <label className="widget__message container__centered-grow"> __ </label>
-                            <div className="container__centered-grow">
+                            <label className="widget__message container__centered--grow"> __ </label>
+                            <div className="container__centered--grow">
                                 <SingleDatePicker
                                     date={this.props.searchDates.endDate}
                                     onDateChange={this.onEndDateChange}
@@ -82,19 +82,23 @@ class UsersList extends React.Component { // unconnected component - exported so
                                     isOutsideRange={() => {false}}
                                 />
                             </div>
-                            {this.props.searchDates.startDate.isBefore(this.props.searchDates.endDate) ? <button className="button container__centered-grow" onClick={this.onGetUsers}>RUN QUERY</button> : <span className="error">End date must be later than Start date</span>}                                                                                                       
+                            {this.props.searchDates.startDate.isBefore(this.props.searchDates.endDate) ? <button className="button container__centered--grow" onClick={this.onGetUsers}>RUN QUERY</button> : <span className="error">End date must be later than Start date</span>}                                                                                                       
                     </div>
                     <UsersSummary />
                     <div className="widget">
-                        {
-                            this.props.users.length === 0 ? ( 
-                                <div className="widget__message">
-                                    No results.
-                                </div>
-                            ) : (
-                                this.props.users.filter((user) => user.missingDates.length > 0).map((user) => <User key={user.id} {...user} />)
-                            )
-                        }
+                        <div className="container__centered">
+                            <div className="container--compact">
+                                {
+                                    this.props.users.length === 0 ? ( 
+                                        <div className="widget__message">
+                                            No results.
+                                        </div>
+                                    ) : (
+                                        this.props.users.filter((user) => user.missingDates.length > 0).map((user) => <User key={user.id} {...user} />)
+                                    )
+                                }
+                            </div>
+                        </div>
                     </div>
                 </Spinner>               
             </div>

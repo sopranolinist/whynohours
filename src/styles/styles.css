@@ -5,6 +5,7 @@ html {
 body {
     font-family: Helvetica, Arial, sans-serif;
     background: #333745;
+    margin: 0;
 }
 
 button {
@@ -61,13 +62,19 @@ button:disabled {
     padding: 0 1.6rem 1.6rem 1.6rem;
 }
 
+.container--compact {
+    max-width: 30rem;
+    margin: 0 auto; 
+    padding: 0 1.6rem 1.6rem 1.6rem;
+}
+
 .container__centered {
     max-width: 60rem;
     margin: 0 auto; 
     padding: 1.0rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 @media (max-width: 40rem) {
@@ -76,10 +83,9 @@ button:disabled {
     }
 }
 
-.container__centered-grow {
+.container__centered--grow {
         flex-grow: 1;
         margin: 1.2rem;
-        justify-content: center;
         align-self: center;
 }
 
@@ -97,10 +103,36 @@ button:disabled {
     font-size: 1.6rem;
 }
 
+.widget__message--compact {
+    border-bottom: 1px solid lighten(#464b5e, 10%);
+    color: #a5afd7;
+    margin: 0;
+    padding: 1.0rem 1.6rem;
+    text-align: left;
+    font-size: 1.6rem;
+}
+
+.widget__message--tight {
+    border-bottom: 1px solid lighten(#464b5e, 10%);
+    color: #a5afd7;
+    margin: 0;
+    padding: 0.2rem 1.6rem;
+    text-align: left;
+    font-size: 1.6rem;
+}
+
 .widget__message--title{
     color: #21c5c5;
     margin: 0;
     padding: 1.2rem;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.widget__message--title--compact{
+    color: #21c5c5;
+    margin: 0;
+    padding: 0.4rem 1.0rem;
     text-align: center;
     font-size: 1.6rem;
 }
@@ -124,10 +156,22 @@ button:disabled {
 .button {
     background: #1caaaa;
     border: none;
-    border-bottom: .3rem solid darken(#1caaaa, 10%);
+    border-bottom: .3rem solid #007777;
     color: white;
     font-size: 1.6rem;
     font-weight: 500;
+    width: 100%;
     padding: 1.2rem;
+}
+
+.button--compact {
+    background: #1caaaa;
+    border: none;
+    border-radius: 0.4rem;
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 0.6rem 1.8rem;
     max-width: 30rem;
+    margin: 1.0rem;
 }
