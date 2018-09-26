@@ -172,6 +172,6 @@ button:disabled {
     font-size: 1.6rem;
     font-weight: 500;
     padding: 0.6rem 1.8rem;
-    max-width: 30rem;
+    width: 6rem;
     margin: 1.0rem;
 }
