@@ -8,7 +8,6 @@ import React from 'react';
 import { connect } from 'react-redux'; // connects a component to the redux store
 import Spinner from 'react-loading-overlay';
 import { SingleDatePicker } from 'react-dates';
-import moment from 'moment';
 import User from './User';
 import UsersSummary from './UsersSummary';
 import { selectUsers } from '../selectors/users';
@@ -68,7 +67,7 @@ class UsersList extends React.Component { // unconnected component - exported so
                                     focused={this.state.startCalendarFocused}
                                     onFocusChange={this.onStartFocusChange}
                                     numberOfMonths={1}
-                                    isOutsideRange={() => {false}}
+                                    isOutsideRange={() => (false)}
                                 />
                             </div>
                             <label className="widget__message container__centered--grow"> __ </label>
@@ -79,7 +78,7 @@ class UsersList extends React.Component { // unconnected component - exported so
                                     focused={this.state.endCalendarFocused}
                                     onFocusChange={this.onEndFocusChange}
                                     numberOfMonths={1}
-                                    isOutsideRange={() => {false}}
+                                    isOutsideRange={() => (false)}
                                 />
                             </div>
                             {this.props.searchDates.startDate.isBefore(this.props.searchDates.endDate) ? <button className="button container__centered--grow" onClick={this.onGetUsers}>RUN QUERY</button> : <span className="error">End date must be later than Start date</span>}                                                                                                       

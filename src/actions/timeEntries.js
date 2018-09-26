@@ -3,7 +3,6 @@
  */
 
 import axios from 'axios';
-import moment from 'moment';
 import config from '../config';
 
 const HARVEST_SERVER_URI = 'https://api.harvestapp.com/v2';
