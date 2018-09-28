@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import UsersList from './UsersList';
+import SignIn from './SignIn';
 import '../styles/styles.css';
 
 class App extends React.Component {
@@ -9,18 +11,22 @@ class App extends React.Component {
             <div>
                 <div className="header">
                     <div className="container">
-                        <div className="header__title">{this.props.componentName}</div>
-                        <div className="warning">NOTE: app currently uses CORS proxy (cors-anywhere-clone.herokuapp.com) to access Harvest API server</div>
+                        <div className="header__title">{this.props.appTitle}</div>
+                        <div className="warning">{this.props.appSubtitle}</div>
                     </div>                   
                 </div> 
-                <UsersList />
+                {this.props.authenticated 
+                    ? <UsersList />
+                    : <SignIn />
+                }               
             </div>
         );
     }  
 }
 
 App.defaultProps = {
-    componentName: 'Why No Hours?'
+    appTitle: 'Why No Hours?',
+    appSubtitle: "Find out who's behind on their timesheet entries."
     // users: [
     //     {id: '1', firstname: 'Jen', lastname: 'Lindsay'},
     //     {id: '2', firstname: 'Jon', lastname: 'DeArmas'},
@@ -29,4 +35,10 @@ App.defaultProps = {
     // ]
 };
 
-export default App;
+const mapStateToProps = (state, props) => {
+    return {
+        authenticated: state.auth.authenticated
+    };
+};
+
+export default connect(mapStateToProps)(App);

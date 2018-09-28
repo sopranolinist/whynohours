@@ -14,10 +14,6 @@ import config from '../config';
 //      lastname: 'lastName'
 //  }
 
-const HARVEST_SERVER_URI = 'https://api.harvestapp.com/v2';
-const HARVEST_USER_AGENT = 'Harvest API Example';
-const CORS_PROXY_URI = 'https://cors-anywhere-clone.herokuapp.com/';
-
 export const determineMissingDates = (users, timeEntries, cal, dates, callback) => (dispatch) => {
     const initialDate = moment(dates.startDate);
     const searchRange = dates.endDate.diff(dates.startDate, 'days');
@@ -61,23 +57,26 @@ export const getUsers = (callback) => async (dispatch) => {
     console.log('Retrieving users...');
     try {
         // Get All Users
+        const authToken = localStorage.getItem('wnhToken');
         const response = await axios.get(
-            `${CORS_PROXY_URI}${HARVEST_SERVER_URI}/users`, 
+            `${config.SERVER_APP_URI}/users`, 
             {
                 headers: {
-                    'Authorization': `Bearer ${config.HARVEST_ACCESS_TOKEN}`,
-                    'Harvest-Account-ID': `${config.HARVEST_ACCOUNT_ID}`,
-                    'User-Agent': `${HARVEST_USER_AGENT}`
+                    'Authorization': authToken
                 }
             }
         );
-        const users = response.data.users.map((user) => ({
+        if (response.status !== 200) {
+            throw new Error(`Error ${response.status} ${response.statusText}`);
+        }
+        const users = response.data.map((user) => ({
             id: user.id,
             email: user.email,
             firstname: user.first_name,
             lastname: user.last_name,
             missingDates: []
-        }));           
+        })); 
+         
         dispatch({
             type: 'GET_USERS',
             payload: users
@@ -91,4 +90,40 @@ export const getUsers = (callback) => async (dispatch) => {
         });
     }
 };
+
+/** OLD VERSION BEFORE SERVER-SIDE APP */
+// export const getUsers = (callback) => async (dispatch) => {
+//     console.log('Retrieving users...');
+//     try {
+//         // Get All Users
+//         const response = await axios.get(
+//             `${CORS_PROXY_URI}${HARVEST_SERVER_URI}/users`, 
+//             {
+//                 headers: {
+//                     'Authorization': `Bearer ${config.HARVEST_ACCESS_TOKEN}`,
+//                     'Harvest-Account-ID': `${config.HARVEST_ACCOUNT_ID}`,
+//                     'User-Agent': `${HARVEST_USER_AGENT}`
+//                 }
+//             }
+//         );
+//         const users = response.data.users.map((user) => ({
+//             id: user.id,
+//             email: user.email,
+//             firstname: user.first_name,
+//             lastname: user.last_name,
+//             missingDates: []
+//         }));           
+//         dispatch({
+//             type: 'GET_USERS',
+//             payload: users
+//         });
+//         console.log('Users retrieved!');
+//         callback(users);
+//     } catch (e) {
+//         dispatch({
+//             type: 'USERS_ERROR',
+//             payload: e
+//         });
+//     }
+// };
 

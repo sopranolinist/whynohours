@@ -5,6 +5,7 @@ import usersReducer from '../reducers/users'; // usersReducer
 import timeReducer from '../reducers/timeEntries';
 import calReducer from '../reducers/calendar';
 import datesReducer from '../reducers/dates';
+import authReducer from '../reducers/auth';
 
 export default () => {
 
@@ -14,7 +15,8 @@ export default () => {
             users: usersReducer,
             timeEntries: timeReducer,
             cal: calReducer,
-            searchDates: datesReducer
+            searchDates: datesReducer,
+            auth: authReducer,
         }),
         {
             users: [],
@@ -23,6 +25,9 @@ export default () => {
             searchDates: {
                 startDate: moment().subtract(2, 'weeks'),
                 endDate: moment()
+            },
+            auth: { 
+                authenticated: localStorage.getItem('wnhToken') // initial auth state
             }
         },
         applyMiddleware(reduxThunk),

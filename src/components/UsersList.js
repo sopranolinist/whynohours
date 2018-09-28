@@ -81,7 +81,7 @@ class UsersList extends React.Component { // unconnected component - exported so
                                     isOutsideRange={() => (false)}
                                 />
                             </div>
-                            {this.props.searchDates.startDate.isBefore(this.props.searchDates.endDate) ? <button className="button container__centered--grow" onClick={this.onGetUsers}>RUN QUERY</button> : <span className="error">End date must be later than Start date</span>}                                                                                                       
+                            {this.props.searchDates.startDate && this.props.searchDates.endDate && this.props.searchDates.startDate.isBefore(this.props.searchDates.endDate) ? <button className="button container__centered--grow" onClick={this.onGetUsers}>RUN QUERY</button> : <span className="error">End date must be later than Start date</span>}                                                                                                       
                     </div>
                     <UsersSummary />
                     <div className="widget">

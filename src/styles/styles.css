@@ -83,6 +83,15 @@ button:disabled {
     }
 }
 
+.container__centered--column {
+    max-width: 60rem;
+    margin: 0 auto; 
+    padding: 1.0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
 .container__centered--grow {
         flex-grow: 1;
         margin: 1.2rem;
