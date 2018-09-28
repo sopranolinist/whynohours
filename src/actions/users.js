@@ -85,9 +85,10 @@ export const getUsers = (callback) => async (dispatch) => {
         callback(users);
     } catch (e) {
         dispatch({
-            type: 'USERS_ERROR',
-            payload: e
+            type: 'AUTH_ERROR',
+            payload: e.message
         });
+        callback(null);
     }
 };
 

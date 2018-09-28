@@ -26,9 +26,10 @@ export const getCalToken = (callback) => async (dispatch) => {
         callback(accessToken);
     } catch (e) {
         dispatch({
-            type: 'CAL_ERROR',
-            payload: e
+            type: 'AUTH_ERROR',
+            payload: e.message
         });
+        callback(null);
     }   
 };
 
@@ -82,9 +83,10 @@ export const getCalEntries = (users, dates, accessToken, callback) => async (dis
         callback(responseData);
     } catch (e) {
         dispatch({
-            type: 'CAL_ERROR',
-            payload: e
+            type: 'AUTH_ERROR',
+            payload: e.message
         });
+        callback(null);
     }
 };
 

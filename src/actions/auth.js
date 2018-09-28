@@ -27,3 +27,10 @@ export const signin = (passcode, callback) => async (dispatch) => { // can retur
         });
     }        
 };
+
+export const clearErrors = () => {
+    return {
+        type: 'AUTH_ERROR',
+        payload: ''
+    };
+}

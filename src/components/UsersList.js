@@ -11,6 +11,7 @@ import { SingleDatePicker } from 'react-dates';
 import User from './User';
 import UsersSummary from './UsersSummary';
 import { selectUsers } from '../selectors/users';
+import { clearErrors } from '../actions/auth';
 import { getUsers, determineMissingDates } from '../actions/users';
 import { getTimeEntries } from '../actions/timeEntries';
 import { getCalEntries, getCalToken } from '../actions/calendar';
@@ -39,16 +40,33 @@ class UsersList extends React.Component { // unconnected component - exported so
     };
     onGetUsers = () => {
         this.setState(() => ({ loading: true }));
+        this.props.clearErrors();
         this.props.getUsers((users) => {
-            this.props.getTimeEntries(users, this.props.searchDates, () => {
-                this.props.getCalToken((token) => {
-                    this.props.getCalEntries(users, this.props.searchDates, token, () => {
-                        this.props.determineMissingDates(this.props.users, this.props.timeEntries, this.props.cal, this.props.searchDates, () => {
-                            this.setState(() => ({ loading: false }));
+            if (this.props.errorMessage === '') {
+                this.props.getTimeEntries(users, this.props.searchDates, () => {
+                    if (this.props.errorMessage === '') {
+                        this.props.getCalToken((token) => {
+                            if (this.props.errorMessage === '') {
+                                this.props.getCalEntries(users, this.props.searchDates, token, () => {
+                                    if (this.props.errorMessage === '') {
+                                        this.props.determineMissingDates(this.props.users, this.props.timeEntries, this.props.cal, this.props.searchDates, () => {
+                                            this.setState(() => ({ loading: false }));
+                                        });
+                                    } else {
+                                        this.setState(() => ({ loading: false }));
+                                    }
+                                });
+                            } else {
+                                this.setState(() => ({ loading: false }));
+                            }
                         });
-                    });
+                    } else {
+                        this.setState(() => ({ loading: false }));
+                    }
                 });
-            });
+            } else {
+                this.setState(() => ({ loading: false }));
+            }
         });
     };
 
@@ -87,6 +105,7 @@ class UsersList extends React.Component { // unconnected component - exported so
                     <div className="widget">
                         <div className="container__centered">
                             <div className="container--compact">
+                                {this.props.errorMessage && <div className="error">{this.props.errorMessage}</div>}
                                 {
                                     this.props.users.length === 0 ? ( 
                                         <div className="widget__message">
@@ -107,6 +126,7 @@ class UsersList extends React.Component { // unconnected component - exported so
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        clearErrors: () => dispatch(clearErrors()),
         setStartDate: (date) => dispatch(setStartDate(date)),
         setEndDate: (date) => dispatch(setEndDate(date)),
         getUsers: (callback) => dispatch(getUsers(callback)),
@@ -122,7 +142,8 @@ const mapStateToProps = (state) => { // map the app store state to the ExpenseLi
         searchDates: state.searchDates,                       // reruns automatically as store changes
         users: selectUsers(state.users),
         timeEntries: state.timeEntries,
-        cal: state.cal
+        cal: state.cal,
+        errorMessage: state.auth.errorMessage
         //users: selectUsers(state.users, state.filters)
     };
 };

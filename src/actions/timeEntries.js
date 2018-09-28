@@ -39,9 +39,10 @@ export const getTimeEntries = (users, dates, callback) => async (dispatch) => {
         callback(timeEntries);
     } catch (e) {
         dispatch({
-            type: 'TIME_ENTRIES_ERROR',
-            payload: e
+            type: 'AUTH_ERROR',
+            payload: e.message
         });
+        callback(null);
     }
 };
 

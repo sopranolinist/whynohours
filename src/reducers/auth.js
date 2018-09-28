@@ -11,6 +11,7 @@ export default (state = authReducerDefaultState, action) => {
                 authenticated: action.payload // response.data.token if authenticated, '' if not
             };
         case 'AUTH_ERROR':
+            console.log('case auth error: ', action.payload);
             return {
                 ...state,
                 errorMessage: action.payload // 'Email already in use' if not authenticated
