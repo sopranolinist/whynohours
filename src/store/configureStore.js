@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'; 
 import reduxThunk from 'redux-thunk';
 import moment from 'moment';
-import usersReducer from '../reducers/users'; // usersReducer
+import usersReducer from '../reducers/users';
 import timeReducer from '../reducers/timeEntries';
 import calReducer from '../reducers/calendar';
 import datesReducer from '../reducers/dates';
