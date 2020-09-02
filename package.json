@@ -15,7 +15,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.0",
-    "googleapis": "27",
+    "googleapis": "39",
     "jwt-simple": "^0.5.1",
     "moment": "^2.22.2",
     "react": "^16.5.0",
